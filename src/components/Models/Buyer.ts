@@ -1,9 +1,14 @@
-import { IBuyer, TPayment } from '../../types';
+import { IBuyer } from '../../types';
 
 type ValidationErrors = Partial<Record<keyof IBuyer, string>>;
 
 export class Buyer {
-    private data: Partial<IBuyer> = {};
+    private data: IBuyer = {
+        payment: 'card',
+        email: '',
+        phone: '',
+        address: ''
+    };
 
     setData(data: Partial<IBuyer>) {
         this.data = {
@@ -12,12 +17,17 @@ export class Buyer {
         };
     }
 
-    getData(): Partial<IBuyer> {
+    getData(): IBuyer {
         return this.data;
     }
 
     clear() {
-        this.data = {};
+        this.data = {
+            payment: 'card',
+            email: '',
+            phone: '',
+            address: ''
+        };
     }
 
     validate(): ValidationErrors {

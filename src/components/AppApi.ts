@@ -1,4 +1,4 @@
-import { IApi, IProductsResponse, IOrderRequest, IOrderResponse } from '../../types';
+import { IApi, IProductsResponse, IOrderRequest, IOrderResponse } from '../types';
 
 export class AppApi {
     constructor(private api: IApi) {}

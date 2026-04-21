@@ -68,81 +68,43 @@ npm run build
 
 ### IProduct
 
-```ts
-interface IProduct {
-  id: string;
-  description: string;
-  image: string;
-  title: string;
-  category: string;
-  price: number | null;
-}
-```
+Интерфейс описывает товар, который отображается в каталоге и может быть добавлен в корзину.
 
-Описание товара.
-
----
+- id — уникальный идентификатор товара
+- description — описание товара
+- image — путь к изображению товара
+- title — название товара
+- category — категория товара
+- price — цена товара (может отсутствовать)
 
 ### IBuyer
 
-```ts
-interface IBuyer {
-  payment: TPayment;
-  email: string;
-  phone: string;
-  address: string;
-}
-```
+Интерфейс описывает данные покупателя, необходимые для оформления заказа.
 
-Данные покупателя.
-
----
-
-### TPayment
-
-```ts
-type TPayment = 'card' | 'cash';
-```
-
-Тип оплаты.
-
----
-
-### IProductsResponse
-
-```ts
-interface IProductsResponse {
-  total: number;
-  items: IProduct[];
-}
-```
-
-Ответ сервера с товарами.
-
----
+- payment — способ оплаты
+- email — email пользователя
+- phone — телефон пользователя
+- address — адрес доставки
 
 ### IOrderRequest
 
-```ts
-interface IOrderRequest extends IBuyer {
-  items: string[];
-}
-```
+Тип данных, отправляемый на сервер при оформлении заказа.
 
-Данные для отправки заказа.
+Содержит данные покупателя и список id товаров.
 
----
+### IProductsResponse
+
+Ответ сервера с товарами.
+
+- total — общее количество товаров
+- items — массив товаров
 
 ### IOrderResponse
 
-```ts
-interface IOrderResponse {
-  id: string;
-  total: number;
-}
-```
-
 Ответ сервера после оформления заказа.
+
+- id — идентификатор заказа
+- total — итоговая сумма
 
 ---
 
@@ -150,68 +112,51 @@ interface IOrderResponse {
 
 ### Products
 
-Отвечает за каталог товаров.
+Модель отвечает за хранение каталога товаров.
 
 Поля:
-
-* `items: IProduct[]`
-* `selected: IProduct | null`
+- items — массив всех товаров
+- selected — выбранный товар для просмотра
 
 Методы:
-
-* `setItems`
-* `getItems`
-* `getById`
-* `setSelected`
-* `getSelected`
+- setItems — сохраняет массив товаров
+- getItems — возвращает список товаров
+- getById — возвращает товар по id
+- setSelected — устанавливает выбранный товар
+- getSelected — возвращает выбранный товар
 
 ---
 
 ### Cart
 
-Отвечает за корзину.
+Модель корзины пользователя.
 
 Поля:
-
-* `items: IProduct[]`
+- items — список товаров в корзине
 
 Методы:
-
-* `getItems`
-* `add`
-* `remove`
-* `clear`
-* `getTotal`
-* `getCount`
-* `has`
+- getItems — возвращает товары в корзине
+- add — добавляет товар
+- remove — удаляет товар по id
+- clear — очищает корзину
+- getTotal — возвращает общую стоимость
+- getCount — возвращает количество товаров
+- has — проверяет наличие товара в корзине
 
 ---
 
 ### Buyer
 
-Отвечает за данные покупателя.
+Модель данных покупателя.
 
 Поля:
-
-* `data: Partial<IBuyer>`
+- data — объект с данными покупателя
 
 Методы:
-
-* `setData`
-* `getData`
-* `clear`
-* `validate`
-
-Метод `validate` возвращает объект ошибок:
-
-```ts
-{
-  payment?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
-}
-```
+- setData — обновляет данные частично
+- getData — возвращает все данные
+- clear — сбрасывает данные к начальному состоянию
+- validate — проверяет поля и возвращает ошибки
 
 ---
 

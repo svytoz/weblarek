@@ -4,7 +4,7 @@ import { apiProducts } from './utils/data';
 import { API_URL } from './utils/constants';
 
 import { Api } from './components/base/Api';
-import { AppApi } from './components/base/AppApi';
+import { AppApi } from './components/AppApi';
 
 import { Products } from './components/Models/Products';
 import { Cart } from './components/Models/Cart';
@@ -23,16 +23,28 @@ const firstProduct = productsModel.getItems()[0];
 productsModel.setSelected(firstProduct);
 console.log('Выбранный товар:', productsModel.getSelected());
 
+console.log('Поиск по id:', productsModel.getById(firstProduct.id));
+
 // тест корзины
 cartModel.add(firstProduct);
-console.log('Корзина после добавления:', cartModel.getItems());
+console.log('После добавления:', cartModel.getItems());
+console.log('Сумма:', cartModel.getTotal());
+console.log('Количество:', cartModel.getCount());
+
+const secondProduct = productsModel.getItems()[1];
+cartModel.add(secondProduct);
+
+console.log('После добавления второго товара:', cartModel.getItems());
+console.log('Сумма:', cartModel.getTotal());
+console.log('Количество:', cartModel.getCount());
 
 cartModel.remove(firstProduct.id);
-console.log('Корзина после удаления:', cartModel.getItems());
+console.log('После удаления одного товара:', cartModel.getItems());
 
-cartModel.add(firstProduct);
-console.log('Общая сумма:', cartModel.getTotal());
-console.log('Количество:', cartModel.getCount());
+console.log('Проверка наличия:', cartModel.has(secondProduct.id));
+
+cartModel.clear();
+console.log('После очистки:', cartModel.getItems());
 
 // тест покупателя
 buyerModel.setData({ address: 'Москва' });
@@ -42,6 +54,10 @@ buyerModel.setData({ phone: '+79999999999' });
 
 console.log('Данные покупателя:', buyerModel.getData());
 console.log('Ошибки валидации:', buyerModel.validate());
+
+buyerModel.clear();
+console.log('После очистки:', buyerModel.getData());
+console.log('Ошибки после очистки:', buyerModel.validate());
 
 // API
 const api = new Api(API_URL);

@@ -30,6 +30,7 @@ export interface IProductsResponse {
 
 export interface IOrderRequest extends IBuyer {
     items: string[];
+    total: number;
 }
 
 export interface IOrderResponse {
