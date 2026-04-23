@@ -8,6 +8,10 @@ export class AppApi {
     }
 
     createOrder(data: IOrderRequest): Promise<IOrderResponse> {
+        if (!data.payment) {
+            return Promise.reject(new Error('Payment is required'));
+        }
+
         return this.api.post<IOrderResponse>('/order/', data);
     }
 }

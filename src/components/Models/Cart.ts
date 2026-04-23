@@ -22,7 +22,12 @@ export class Cart {
     }
 
     getTotal(): number {
-        return this.items.reduce((sum, item) => sum + (item.price ?? 0), 0);
+        return this.items.reduce((sum, item) => {
+            if (item.price === null) {
+                return sum;
+            }
+            return sum + item.price;
+        }, 0);
     }
 
     getCount(): number {

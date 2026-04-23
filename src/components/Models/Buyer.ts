@@ -4,7 +4,7 @@ type ValidationErrors = Partial<Record<keyof IBuyer, string>>;
 
 export class Buyer {
     private data: IBuyer = {
-        payment: 'card',
+        payment: null,
         email: '',
         phone: '',
         address: ''
@@ -23,7 +23,7 @@ export class Buyer {
 
     clear() {
         this.data = {
-            payment: 'card',
+            payment: null,
             email: '',
             phone: '',
             address: ''

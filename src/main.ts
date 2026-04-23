@@ -48,7 +48,7 @@ console.log('После очистки:', cartModel.getItems());
 
 // тест покупателя
 buyerModel.setData({ address: 'Москва' });
-buyerModel.setData({ payment: 'card' });
+buyerModel.setData({ payment: 'online' });
 buyerModel.setData({ email: 'test@test.ru' });
 buyerModel.setData({ phone: '+79999999999' });
 
